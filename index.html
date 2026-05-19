@@ -2614,6 +2614,17 @@ binocularsIcon.parentNode.appendChild(textBox);
                 filterFunc();
             };
             div_road_refid.appendChild(reset_road_refid);
+					var adminPassword = "1234"; // change this to your password
+
+function checkPassword() {
+    var entered = prompt("Enter password to perform this action:");
+    if (entered === adminPassword) {
+        return true;
+    } else {
+        alert("Wrong password!");
+        return false;
+    }
+}
 			var drawnItems = new L.FeatureGroup();
 map.addLayer(drawnItems);
 
@@ -2633,6 +2644,7 @@ map.addControl(drawControl); // ✅ Add control to map
 
 // Event listener for when a shape is created
 map.on(L.Draw.Event.CREATED, function (event) {
+ if (!checkPassword()) return; 
     var layer = event.layer;
     drawnItems.addLayer(layer);
 
